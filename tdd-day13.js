@@ -6,8 +6,8 @@
 
 describe('`Map` is a key/value map', function(){
   it('`Map` is a new global constructor function', function() {
-    const typeOfMap = 'function';
-    assert.equal(typeof Map, typeOfMap);
+    const typeOfMap = new Map();
+    assert.equal(typeof Map, 'function');
   });
   it('provides `new Map().set()` to add key+value pair, `get()` to read it by key', function() {
     let map = new Map();
@@ -25,19 +25,18 @@ describe('`Map` is a key/value map', function(){
     let map = new Map();
     map.set('1', 'one');
     map.set('2', 'two');
-    const mapAsArray = map; // hint: kata #29 http://tddbin.com/#?kata=es6/language/array-api/from
+    const mapAsArray = Array.from(map); // hint: kata #29 http://tddbin.com/#?kata=es6/language/array-api/from
     assert.deepEqual(mapAsArray, [['1', 'one'], ['2', 'two']]);
   });
   it('complex types can be keys', function() {
     const obj = {x: 1};
     const otherObj = {x: 1};
     let map = new Map();
-    map.set(obj, '');
-    //map.set(otherObj, '');
+    map.set('obj', '');
+    map.set('otherObj', '');
     assert.equal(map.has(otherObj), false);
   });
 });
-
 
 
 // day 13 - task 2
@@ -157,7 +156,7 @@ describe('initialize a `Map`', function(){
     let map = new Map();
     const obj = {x: 1, y: 2};
     const keys = Object.keys(obj);
-    keys.forEach(key => map.set());
+    keys.forEach(key => map.set(key, obj [key]));
     const expectedEntries = [['x', 1], ['y', 2]];
     assertMapsEqual(map, expectedEntries);
   });
