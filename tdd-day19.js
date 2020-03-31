@@ -102,7 +102,7 @@ describe('Tagged template strings, are an advanced form of template strings', fu
         assert.deepEqual(tagFunction`template string`, result);
       });
       it('expressions are NOT passed to it', function() {
-        var tagged = tagFunction`one ${23}`;
+        var tagged = tagFunction`one${23}two`;
         assert.deepEqual(tagged, ['one', 'two']);
       });
     });
@@ -124,14 +124,13 @@ describe('Tagged template strings, are an advanced form of template strings', fu
       });
       it('using ES6 rest syntax, all values can be accessed via one variable', function() {
         function valuesOnly(stringsArray, ...allValues) { // using the new ES6 rest syntax
-          return;
+          return [...allValues];
         }
         assert.deepEqual(valuesOnly`uno=${one}, dos=${two}, tres=${three}`, [1, 2, 3]);
       });
     });
   });
 });
-
 
 
 
@@ -224,12 +223,11 @@ describe('Spread syntax with arrays', () => {
       class X {
         constructor(a, b, c) { return [a, b, c]; }
       }
-      const args = [1];
+      const args = [1, 2, 3];
       assert.deepEqual(new X(...args), [1, 2, 3]);
     });
   });
 });
-
 
 
 
