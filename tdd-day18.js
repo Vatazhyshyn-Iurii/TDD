@@ -153,7 +153,7 @@ describe('`Array.prototype.findIndex` makes finding items in arrays easier', () 
   it('combined with destructuring complex compares become short', function() {
     const bob = {name: 'Bob'};
     const alice = {name: 'Alice'};
-    const foundAt = [bob, alice].findIndex(({name:{length:l}}) => length > 3);
+    const foundAt = [bob, alice].findIndex(({name:{length}}) => length > 3);
     assert.equal(foundAt, 1);
   });
 });
@@ -176,18 +176,17 @@ describe('`[].entries()` returns an iterator object with all entries', function(
   it('empty elements contain the value `undefined`', function() {
     const arr = ['one'];
     arr[2] = 'three';
-    const secondValue = arr.entries();
+    const secondValue = Array.from(arr.entries())[1];
     assert.deepEqual(secondValue, [1, void 0]);
   });
   describe('returns an iterable', function() {
     it('has `next()` to iterate', function() {
       const arr = ['one'];
-      const value = arr;
+      const value = arr.entries().next().value;
       assert.deepEqual(value, [0, 'one']);
     });
   });
 });
-
 
 
 
