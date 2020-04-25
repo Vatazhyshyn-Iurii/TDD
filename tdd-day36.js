@@ -98,7 +98,7 @@ describe('A promise can be created in multiple ways', function() {
       assert.throws(promiseWithoutParams);  
     });
     it('passing a non-callable throws too', function() {
-      const notAFunction = () => {};
+      const notAFunction = new Promise((resolve, reject) => reject());
       assert.throws(() => { new Promise(notAFunction); });
     });
   });
